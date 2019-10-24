@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 /**
  * 控制器层
@@ -23,7 +24,13 @@ public class EnterpriseController {
 	@Autowired
 	private EnterpriseService enterpriseService;
 	
-	
+
+	@GetMapping(value = "/search/hotList")
+	public Result findHot(){
+		List<Enterprise> enterpriseList = enterpriseService.findbyIshot("1");
+		return new Result(StatusCodeEnum.SUCCESS,enterpriseList);
+	}
+
 	/**
 	 * 查询全部数据
 	 * @return
