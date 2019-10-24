@@ -16,6 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PageResult<T> {
-    private long tatal;
+    private long tatal;//总记录数
+    private Integer pageNumber;//当前页
+    private Integer pageSize;//每页记录数
     private List<T> rows;
 }

@@ -1,6 +1,8 @@
 package com.chenyj.base.service;
 
 import com.chenyj.base.pojo.Label;
+import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 
@@ -21,4 +23,6 @@ public interface LabelService {
     void update(Label label);
 
     void delete(String id);
+
+    Page<Label> searchByLabel(Label label, Integer pageNumber, Integer pageSize);
 }

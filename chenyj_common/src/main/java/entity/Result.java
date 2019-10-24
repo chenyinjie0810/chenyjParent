@@ -32,7 +32,9 @@ public class Result {
     public Result(StatusCodeEnum statusCodeEnum,Object data){
         this.flag=statusCodeEnum.getFlag();
         this.message=statusCodeEnum.getMessage();
-        this.data=data;
+        if (null!= data) {
+            this.data=data;
+        }
     }
 
     public Result(boolean flag, Integer code, String message) {
