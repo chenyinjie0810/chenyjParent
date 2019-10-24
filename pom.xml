@@ -6,6 +6,7 @@
     <modules>
         <module>chenyj_common</module>
         <module>chenyj_base</module>
+        <module>chenyj_recruit</module>
     </modules>
     
     <parent>
