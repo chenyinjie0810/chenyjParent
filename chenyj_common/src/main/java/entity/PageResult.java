@@ -20,4 +20,9 @@ public class PageResult<T> {
     private Integer pageNumber;//当前页
     private Integer pageSize;//每页记录数
     private List<T> rows;
+
+    public PageResult(long tatal, List rows){
+        this.tatal=tatal;
+        this.rows=rows;
+    }
 }

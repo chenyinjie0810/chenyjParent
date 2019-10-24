@@ -1,6 +1,5 @@
 package com.chenyj.recruit.controller;
 
-
 import entity.Result;
 import enums.StatusCodeEnum;
 import org.springframework.web.bind.annotation.ControllerAdvice;

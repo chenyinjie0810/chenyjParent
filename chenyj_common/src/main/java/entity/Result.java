@@ -36,6 +36,11 @@ public class Result {
             this.data=data;
         }
     }
+    public Result(StatusCodeEnum statusCodeEnum){
+        this.flag=statusCodeEnum.getFlag();
+        this.message=statusCodeEnum.getMessage();
+    }
+
 
     public Result(boolean flag, Integer code, String message) {
         this.flag = flag;
