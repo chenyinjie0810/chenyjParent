@@ -6,13 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="chenyj_common" />
         <module name="chenyj_base" />
+        <module name="chenyj_recruit" />
+        <module name="chenyj_common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="chenyj_base" target="1.8" />
       <module name="chenyj_common" target="1.8" />
+      <module name="chenyj_recruit" target="1.8" />
       <module name="parent" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -20,6 +22,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="chenyj_base" options="-parameters" />
       <module name="chenyj_common" options="-parameters" />
+      <module name="chenyj_recruit" options="-parameters" />
       <module name="parent" options="-parameters" />
     </option>
   </component>

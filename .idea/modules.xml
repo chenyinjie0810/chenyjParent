@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/chenyj_base/chenyj_base.iml" filepath="$PROJECT_DIR$/chenyj_base/chenyj_base.iml" />
       <module fileurl="file://$PROJECT_DIR$/chenyj_common/chenyj_common.iml" filepath="$PROJECT_DIR$/chenyj_common/chenyj_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chenyj_recruit/chenyj_recruit.iml" filepath="$PROJECT_DIR$/chenyj_recruit/chenyj_recruit.iml" />
       <module fileurl="file://$PROJECT_DIR$/parent.iml" filepath="$PROJECT_DIR$/parent.iml" />
     </modules>
   </component>
