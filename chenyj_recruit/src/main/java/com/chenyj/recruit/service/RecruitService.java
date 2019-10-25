@@ -175,7 +175,10 @@ public class RecruitService {
 
 			}
 		};
+	}
 
+	public List<Recruit> queryTop5RecruitList(String state){
+		return recruitDao.findTop5ByStateOrderByCreatetimeDesc(state);
 	}
 
 }

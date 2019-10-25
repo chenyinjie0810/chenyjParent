@@ -97,5 +97,10 @@ public class RecruitController {
 		recruitService.deleteById(id);
 		return new Result(StatusCodeEnum.SUCCESS,"删除成功");
 	}
-	
+
+
+	@GetMapping(value = "/queryTop5RecruitList")
+	public Result queryTop5RecruitList(){
+		return  new Result(StatusCodeEnum.SUCCESS,recruitService.queryTop5RecruitList("1"));
+	}
 }

@@ -1,7 +1,7 @@
-package com.chenyj.recruit.controller;
+package com.chenyj.qa.controller;
 
-import com.chenyj.recruit.pojo.Enterprise;
-import com.chenyj.recruit.service.EnterpriseService;
+import com.chenyj.qa.pojo.Reply;
+import com.chenyj.qa.service.ReplyService;
 import entity.PageResult;
 import entity.Result;
 import enums.StatusCodeEnum;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 /**
  * 控制器层
@@ -18,26 +17,20 @@ import java.util.Map;
  */
 @RestController
 @CrossOrigin
-@RequestMapping("/enterprise")
-public class EnterpriseController {
+@RequestMapping("/reply")
+public class ReplyController {
 
 	@Autowired
-	private EnterpriseService enterpriseService;
+	private ReplyService replyService;
 	
-
-	@GetMapping(value = "/search/hotList")
-	public Result findHot(){
-		List<Enterprise> enterpriseList = enterpriseService.findbyIshot("1");
-		return new Result(StatusCodeEnum.SUCCESS,enterpriseList);
-	}
-
+	
 	/**
 	 * 查询全部数据
 	 * @return
 	 */
 	@RequestMapping(method= RequestMethod.GET)
 	public Result findAll(){
-		return new Result(StatusCodeEnum.SUCCESS,enterpriseService.findAll());
+		return new Result(StatusCodeEnum.SUCCESS,replyService.findAll());
 	}
 	
 	/**
@@ -47,7 +40,7 @@ public class EnterpriseController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.GET)
 	public Result findById(@PathVariable String id){
-		return new Result(StatusCodeEnum.SUCCESS,enterpriseService.findById(id));
+		return new Result(StatusCodeEnum.SUCCESS,replyService.findById(id));
 	}
 
 
@@ -60,8 +53,8 @@ public class EnterpriseController {
 	 */
 	@RequestMapping(value="/search/{page}/{size}",method=RequestMethod.POST)
 	public Result findSearch(@RequestBody Map searchMap , @PathVariable int page, @PathVariable int size){
-		Page<Enterprise> pageList = enterpriseService.findSearch(searchMap, page, size);
-		return  new Result(StatusCodeEnum.SUCCESS,  new PageResult<Enterprise>(pageList.getTotalElements(), pageList.getContent()) );
+		Page<Reply> pageList = replyService.findSearch(searchMap, page, size);
+		return  new Result(StatusCodeEnum.SUCCESS,  new PageResult<Reply>(pageList.getTotalElements(), pageList.getContent()) );
 	}
 
 	/**
@@ -71,27 +64,27 @@ public class EnterpriseController {
      */
     @RequestMapping(value="/search",method = RequestMethod.POST)
     public Result findSearch( @RequestBody Map searchMap){
-        return new Result(StatusCodeEnum.SUCCESS,enterpriseService.findSearch(searchMap));
+        return new Result(StatusCodeEnum.SUCCESS,replyService.findSearch(searchMap));
     }
 	
 	/**
 	 * 增加
-	 * @param enterprise
+	 * @param reply
 	 */
 	@RequestMapping(method=RequestMethod.POST)
-	public Result add(@RequestBody Enterprise enterprise  ){
-		enterpriseService.add(enterprise);
+	public Result add(@RequestBody Reply reply  ){
+		replyService.add(reply);
 		return new Result(StatusCodeEnum.SUCCESS);
 	}
 	
 	/**
 	 * 修改
-	 * @param enterprise
+	 * @param reply
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody Enterprise enterprise, @PathVariable String id ){
-		enterprise.setId(id);
-		enterpriseService.update(enterprise);		
+	public Result update(@RequestBody Reply reply, @PathVariable String id ){
+		reply.setId(id);
+		replyService.update(reply);		
 		return new Result(StatusCodeEnum.SUCCESS);
 	}
 	
@@ -101,10 +94,8 @@ public class EnterpriseController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.DELETE)
 	public Result delete(@PathVariable String id ){
-		enterpriseService.deleteById(id);
+		replyService.deleteById(id);
 		return new Result(StatusCodeEnum.SUCCESS);
 	}
-
-
-
+	
 }
