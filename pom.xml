@@ -8,6 +8,7 @@
         <module>chenyj_base</module>
         <module>chenyj_recruit</module>
         <module>chenyj_qa</module>
+        <module>chenyj_article</module>
     </modules>
     
     <parent>
