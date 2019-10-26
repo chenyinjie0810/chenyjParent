@@ -87,7 +87,8 @@ public class ProblemController {
 		problemService.update(problem);		
 		return new Result(StatusCodeEnum.SUCCESS);
 	}
-	
+
+
 	/**
 	 * 删除
 	 * @param id
@@ -97,5 +98,46 @@ public class ProblemController {
 		problemService.deleteById(id);
 		return new Result(StatusCodeEnum.SUCCESS);
 	}
-	
+
+	/**
+	 * @desc:
+	 * @author: chenyj
+	 * @date: 2019/10/26
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@GetMapping(value = "/newList/{pageNumber}/{pageSize}")
+	public Result newList(@PathVariable("pageNumber") int pageNumber, @PathVariable("pageSize") int pageSize){
+		Page<Problem> page=problemService.newList("1", pageNumber, pageSize);
+		return new Result(StatusCodeEnum.SUCCESS, new PageResult<Problem>(page.getTotalElements(),page.getContent()));
+	}
+
+	/**
+	 * @desc:
+	 * @author: chenyj
+	 * @date: 2019/10/26
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@GetMapping(value = "/hotList/{pageNumber}/{pageSize}")
+	public Result hotList(@PathVariable("pageNumber") int pageNumber, @PathVariable("pageSize") int pageSize){
+		Page<Problem> page=problemService.hotList("1", pageNumber, pageSize);
+		return new Result(StatusCodeEnum.SUCCESS, new PageResult<Problem>(page.getTotalElements(),page.getContent()));
+	}
+
+	/**
+	 * @desc:
+	 * @author: chenyj
+	 * @date: 2019/10/26
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@GetMapping(value = "/waitList/{pageNumber}/{pageSize}")
+	public Result waitList(@PathVariable("pageNumber") int pageNumber, @PathVariable("pageSize") int pageSize){
+		Page<Problem> page=problemService.waitList("1", pageNumber, pageSize);
+		return new Result(StatusCodeEnum.SUCCESS, new PageResult<Problem>(page.getTotalElements(),page.getContent()));
+	}
 }

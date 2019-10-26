@@ -163,6 +163,7 @@ public class ProblemService {
 		Pageable pageable=PageRequest.of(pageNumber-1,pageSize);
 		return problemDao.hotList(labelid,pageable);
 	}
+
 	public Page<Problem> waitList(String labelid,Integer pageNumber,Integer pageSize){
 		Pageable pageable=PageRequest.of(pageNumber-1,pageSize);
 		return problemDao.waitList(labelid,pageable);
