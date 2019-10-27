@@ -97,5 +97,29 @@ public class ArticleController {
 		articleService.deleteById(id);
 		return new Result(StatusCodeEnum.SUCCESS);
 	}
+
+	/**
+	 * @desc: 审核
+	 * @author: chenyj
+	 * @date: 2019/10/27
+	 * @param id
+	 * @return
+	 */
+	@GetMapping(value="/examine/{id}")
+	public Result examine(@PathVariable String id){
+		return new Result(StatusCodeEnum.SUCCESS, articleService.updateState("2",id));
+	}
+
+	/**
+	 * @desc:
+	 * @author: chenyj
+	 * @date: 2019/10/27
+	 * @return
+	 */
+	@GetMapping(value = "/thumbup/{id}")
+	public Result updateThumbup(@PathVariable String id){
+		articleService.addThumbup(id);
+		return new Result(StatusCodeEnum.SUCCESS);
+	}
 	
 }

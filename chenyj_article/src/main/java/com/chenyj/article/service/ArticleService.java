@@ -19,6 +19,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import util.IdWorker;
 
 import com.chenyj.article.dao.ArticleDao;
@@ -31,6 +32,7 @@ import com.chenyj.article.pojo.Article;
  *
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class ArticleService {
 
 	@Autowired
@@ -38,6 +40,18 @@ public class ArticleService {
 	
 	@Autowired
 	private IdWorker idWorker;
+
+	public void updateState(String id){
+		articleDao.updateState(id);
+	}
+
+	public void addThumbup(String id){
+		articleDao.addThumbup(id);
+	}
+
+	public Integer updateState(String state, String id){
+		return articleDao.updateState(state, id);
+	}
 
 	/**
 	 * 查询全部列表
