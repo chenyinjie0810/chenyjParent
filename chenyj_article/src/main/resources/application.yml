@@ -11,3 +11,9 @@ spring:
   jpa: 
     database: MySQL
     show-sql: true
+
+#    配置redis
+  redis:
+    host: 192.168.1.141
+    password: cyj7416146
+    port: 6379

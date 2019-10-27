@@ -9,6 +9,7 @@
         <module>chenyj_recruit</module>
         <module>chenyj_qa</module>
         <module>chenyj_article</module>
+        <module>chenyj_gathering</module>
     </modules>
     
     <parent>

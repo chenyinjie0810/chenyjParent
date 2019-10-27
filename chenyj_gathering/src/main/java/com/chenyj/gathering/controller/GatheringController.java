@@ -1,7 +1,7 @@
-package com.chenyj.article.controller;
+package com.chenyj.gathering.controller;
 
-import com.chenyj.article.pojo.Article;
-import com.chenyj.article.service.ArticleService;
+import com.chenyj.gathering.pojo.Gathering;
+import com.chenyj.gathering.service.GatheringService;
 import entity.PageResult;
 import entity.Result;
 import enums.StatusCodeEnum;
@@ -17,11 +17,11 @@ import java.util.Map;
  */
 @RestController
 @CrossOrigin
-@RequestMapping("/article")
-public class ArticleController {
+@RequestMapping("/gathering")
+public class GatheringController {
 
 	@Autowired
-	private ArticleService articleService;
+	private GatheringService gatheringService;
 	
 	
 	/**
@@ -30,7 +30,7 @@ public class ArticleController {
 	 */
 	@RequestMapping(method= RequestMethod.GET)
 	public Result findAll(){
-		return new Result(StatusCodeEnum.SUCCESS,articleService.findAll());
+		return new Result(StatusCodeEnum.SUCCESS,gatheringService.findAll());
 	}
 	
 	/**
@@ -38,10 +38,9 @@ public class ArticleController {
 	 * @param id ID
 	 * @return
 	 */
-	@GetMapping(value="/{id}")
+	@RequestMapping(value="/{id}",method= RequestMethod.GET)
 	public Result findById(@PathVariable String id){
-		Article article = articleService.findById(id);
-		return new Result(StatusCodeEnum.SUCCESS,article);
+		return new Result(StatusCodeEnum.SUCCESS,gatheringService.findById(id));
 	}
 
 
@@ -54,8 +53,8 @@ public class ArticleController {
 	 */
 	@RequestMapping(value="/search/{page}/{size}",method=RequestMethod.POST)
 	public Result findSearch(@RequestBody Map searchMap , @PathVariable int page, @PathVariable int size){
-		Page<Article> pageList = articleService.findSearch(searchMap, page, size);
-		return  new Result(StatusCodeEnum.SUCCESS,  new PageResult<Article>(pageList.getTotalElements(), pageList.getContent()) );
+		Page<Gathering> pageList = gatheringService.findSearch(searchMap, page, size);
+		return  new Result(StatusCodeEnum.SUCCESS,  new PageResult<Gathering>(pageList.getTotalElements(), pageList.getContent()) );
 	}
 
 	/**
@@ -65,27 +64,27 @@ public class ArticleController {
      */
     @RequestMapping(value="/search",method = RequestMethod.POST)
     public Result findSearch( @RequestBody Map searchMap){
-        return new Result(StatusCodeEnum.SUCCESS,articleService.findSearch(searchMap));
+        return new Result(StatusCodeEnum.SUCCESS,gatheringService.findSearch(searchMap));
     }
 	
 	/**
 	 * 增加
-	 * @param article
+	 * @param gathering
 	 */
 	@RequestMapping(method=RequestMethod.POST)
-	public Result add(@RequestBody Article article  ){
-		articleService.add(article);
+	public Result add(@RequestBody Gathering gathering  ){
+		gatheringService.add(gathering);
 		return new Result(StatusCodeEnum.SUCCESS);
 	}
 	
 	/**
 	 * 修改
-	 * @param article
+	 * @param gathering
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
-	public Result update(@RequestBody Article article, @PathVariable String id ){
-		article.setId(id);
-		articleService.update(article);		
+	public Result update(@RequestBody Gathering gathering, @PathVariable String id ){
+		gathering.setId(id);
+		gatheringService.update(gathering);		
 		return new Result(StatusCodeEnum.SUCCESS);
 	}
 	
@@ -95,31 +94,7 @@ public class ArticleController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.DELETE)
 	public Result delete(@PathVariable String id ){
-		articleService.deleteById(id);
-		return new Result(StatusCodeEnum.SUCCESS);
-	}
-
-	/**
-	 * @desc: 审核
-	 * @author: chenyj
-	 * @date: 2019/10/27
-	 * @param id
-	 * @return
-	 */
-	@GetMapping(value="/examine/{id}")
-	public Result examine(@PathVariable String id){
-		return new Result(StatusCodeEnum.SUCCESS, articleService.updateState("2",id));
-	}
-
-	/**
-	 * @desc:
-	 * @author: chenyj
-	 * @date: 2019/10/27
-	 * @return
-	 */
-	@GetMapping(value = "/thumbup/{id}")
-	public Result updateThumbup(@PathVariable String id){
-		articleService.addThumbup(id);
+		gatheringService.deleteById(id);
 		return new Result(StatusCodeEnum.SUCCESS);
 	}
 	
