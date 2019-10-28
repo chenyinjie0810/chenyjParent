@@ -1,0 +1,9 @@
+server:
+  port: 9006
+spring:
+  application:
+    name: chenyj-spit
+  data:
+    mongodb:
+      host: 192.168.103
+      database: spitdb
