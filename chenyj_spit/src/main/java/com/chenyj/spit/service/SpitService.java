@@ -1,6 +1,8 @@
 package com.chenyj.spit.service;
 
 import com.chenyj.spit.pojo.Spit;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -22,4 +24,7 @@ public interface SpitService {
 
     void delete(String id);
 
+    Page<Spit> findByParentid(String parentid, int pageNumber, int pageSize);
+
+    Spit thumbup(String id);
 }
