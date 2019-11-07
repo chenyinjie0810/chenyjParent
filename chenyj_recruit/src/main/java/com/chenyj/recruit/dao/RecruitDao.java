@@ -17,6 +17,5 @@ public interface RecruitDao extends JpaRepository<Recruit,String>,JpaSpecificati
 
     List<Recruit> findTop5ByStateOrderByCreatetimeDesc(String state);
 
-    Recruit getDistinctById();
 
 }
