@@ -11,6 +11,7 @@
         <module>chenyj_article</module>
         <module>chenyj_gathering</module>
         <module>chenyj_spit</module>
+        <module>chenyj_search</module>
     </modules>
     
     <parent>

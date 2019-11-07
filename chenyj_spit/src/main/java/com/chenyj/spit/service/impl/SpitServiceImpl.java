@@ -38,6 +38,7 @@ public class SpitServiceImpl implements SpitService {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
     @Override
     public List<Spit> findAll() {
         return spitDao.findAll();
