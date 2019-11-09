@@ -1,6 +1,8 @@
 package com.chenyj.search.service;
 
 import com.chenyj.search.pojo.Article;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @Author chenyj
@@ -11,4 +13,6 @@ import com.chenyj.search.pojo.Article;
 public interface ArticleService {
 
     void save(Article article);
+
+    Page<Article> findByTitleOrContentLike(String keywords, int pageNumber, int pageSize);
 }

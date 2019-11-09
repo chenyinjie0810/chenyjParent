@@ -2,9 +2,11 @@ package com.chenyj.search.controller;
 
 import com.chenyj.search.pojo.Article;
 import com.chenyj.search.service.ArticleService;
+import entity.PageResult;
 import entity.Result;
 import enums.StatusCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -33,4 +35,20 @@ public class ArticleController {
         articleService.save(article);
         return new Result(StatusCodeEnum.SUCCESS);
     }
+
+    /**
+     * 查询
+     * @param keywords
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/search/{keywords}/{pageNumber}/{pageSize}")
+    public Result search(@PathVariable String keywords,
+                         @PathVariable int pageNumber,
+                         @PathVariable int pageSize){
+        Page<Article> page=articleService.findByTitleOrContentLike(keywords, pageNumber, pageSize);
+        return new Result(StatusCodeEnum.SUCCESS,new PageResult<Article>(page.getTotalPages(),page.getContent()));
+    }
+
 }
