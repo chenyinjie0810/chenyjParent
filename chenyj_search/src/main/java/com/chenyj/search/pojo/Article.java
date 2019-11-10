@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @Date create by 2019/11/9 0:02
  * 陈银杰专属测试
  */
-@Document(indexName = "chenyj_elasticsearch", type = "article")
+@Document(indexName = "chenyj_article", type = "article")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
