@@ -12,6 +12,7 @@
         <module>chenyj_gathering</module>
         <module>chenyj_spit</module>
         <module>chenyj_search</module>
+        <module>chenyj_rabbitmqtest</module>
     </modules>
     
     <parent>
