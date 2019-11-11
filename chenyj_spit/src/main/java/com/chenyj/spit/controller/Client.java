@@ -114,6 +114,7 @@ public class Client {
      * 该线程用来读取服务器端发送来的消息，并输出到客户端控制台显示
      */
     class ServerHandler implements Runnable {
+        @Override
         public void run() {
             try {
                 InputStream in = socket.getInputStream();

@@ -13,6 +13,7 @@
         <module>chenyj_spit</module>
         <module>chenyj_search</module>
         <module>chenyj_rabbitmqtest</module>
+        <module>chenyj_user</module>
     </modules>
     
     <parent>

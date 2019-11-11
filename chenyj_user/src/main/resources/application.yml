@@ -1,0 +1,13 @@
+server: 
+  port: 9008
+spring: 
+  application:  
+    name: chenyj-user #指定服务名
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/chenyj_qa?serverTimezone=UTC&characterEncoding=utf-8
+    username: root
+    password: cyj7416146
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa: 
+    database: MySQL
+    show-sql: true
