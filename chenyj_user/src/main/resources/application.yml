@@ -7,7 +7,15 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/chenyj_qa?serverTimezone=UTC&characterEncoding=utf-8
     username: root
     password: cyj7416146
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa: 
     database: MySQL
     show-sql: true
+
+  #消息队列配置
+  rabbitmq:
+    host: 192.168.1.111
+  #redis配置
+  redis:
+    host: 192.168.1.111
+    password: cyj7416146

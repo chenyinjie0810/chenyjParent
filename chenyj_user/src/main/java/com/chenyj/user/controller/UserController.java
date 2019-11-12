@@ -7,6 +7,7 @@ import entity.Result;
 import enums.StatusCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -97,5 +98,32 @@ public class UserController {
 		userService.deleteById(id);
 		return new Result(StatusCodeEnum.SUCCESS,"删除成功");
 	}
-	
+
+	/**
+	 * 发送短信验证码
+	 * @param mobile
+	 * @return
+	 */
+	@PostMapping(value = "/sendSms/{mobile}")
+	public Result sendSms(@PathVariable String mobile){
+		return new Result(StatusCodeEnum.SUCCESS,userService.sendSms(mobile));
+	}
+
+	/**
+	 * 验证短信验证码
+	 * @param code
+	 * @param user
+	 * @return
+	 */
+	@PostMapping(value = "/checkCode/{code}")
+	public Result checkCode(@PathVariable String code, @RequestBody User user){
+		Result result;
+		String message=userService.checkCode(user.getMobile(),code);
+		if (StringUtils.isEmpty(message)){
+			result=new Result(StatusCodeEnum.SUCCESS);
+			return result;
+		}
+		result=new Result(StatusCodeEnum.FAIL,message);
+		return result;
+	}
 }

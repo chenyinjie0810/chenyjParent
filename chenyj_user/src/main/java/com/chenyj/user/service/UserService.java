@@ -1,9 +1,7 @@
 package com.chenyj.user.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,11 +10,16 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import util.IdWorker;
@@ -26,7 +29,7 @@ import com.chenyj.user.pojo.User;
 
 /**
  * 服务层
- * 
+ *
  * @author Administrator
  *
  */
@@ -38,6 +41,49 @@ public class UserService {
 	
 	@Autowired
 	private IdWorker idWorker;
+
+	@Autowired
+	private RedisTemplate redisTemplate;
+
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
+
+	/**
+	 * @desc: 发送短信
+	 * @author: chenyj
+	 * @date: 2019/11/12
+	 * @param mobile
+	 */
+	public String sendSms(String mobile){
+		//验证缓存验证码是否失效
+		if (redisTemplate.opsForValue().get("sms"+mobile)!=null){
+			return "验证码尚未失效，无需重新发送";
+		}
+		//获取六位随机数
+		String code = RandomStringUtils.randomNumeric(6);
+		System.out.println(code);
+		//像缓存中放入验证码，十分钟有效
+		redisTemplate.opsForValue().set("sms"+mobile,code,10,TimeUnit.MINUTES);
+		Map<String,String> map=new HashMap<>(2);
+		map.put("mobile",mobile);
+		map.put("code",code);
+		rabbitTemplate.convertAndSend("sms",map);
+		return null;
+	}
+
+	public String checkCode(String mobile, String code) {
+		String checkCode= (String) redisTemplate.opsForValue().get("sms"+mobile);
+		if (StringUtils.isEmpty(checkCode)){
+			return "验证码已失效";
+		}else {
+			if (code.equals(checkCode)){
+				redisTemplate.delete("sms"+mobile);
+				return null;
+			}else {
+				return "验证码不正确";
+			}
+		}
+	}
 
 	/**
 	 * 查询全部列表
@@ -169,5 +215,6 @@ public class UserService {
 		};
 
 	}
+
 
 }
