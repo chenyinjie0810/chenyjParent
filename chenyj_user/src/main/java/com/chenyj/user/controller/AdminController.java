@@ -97,5 +97,15 @@ public class AdminController {
 		adminService.deleteById(id);
 		return new Result(StatusCodeEnum.SUCCESS,"删除成功");
 	}
-	
+
+
+	@PostMapping(value = "/login")
+	public Result login(@RequestBody Admin admin){
+		Admin adminLogin=adminService.login(admin);
+		if (null!=adminLogin){
+			return new Result(StatusCodeEnum.SUCCESS, adminLogin);
+		}else {
+			return new Result(StatusCodeEnum.FAIL);
+		}
+	}
 }

@@ -1,5 +1,6 @@
 package com.chenyj.user.controller;
 
+import com.chenyj.user.pojo.Admin;
 import com.chenyj.user.pojo.User;
 import com.chenyj.user.service.UserService;
 import entity.PageResult;
@@ -73,7 +74,7 @@ public class UserController {
 	 * @param user
 	 */
 	@PostMapping
-	public Result add(@RequestBody User user  ){
+	public Result add(@RequestBody User user){
 		userService.add(user);
 		return new Result(StatusCodeEnum.SUCCESS,"增加成功");
 	}
@@ -126,4 +127,6 @@ public class UserController {
 		result=new Result(StatusCodeEnum.FAIL,message);
 		return result;
 	}
+
+
 }

@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="chenyj_common" />
         <module name="chenyj_qa" />
+        <module name="chenyj_user" />
         <module name="chenyj_gathering" />
         <module name="chenyj_article" />
         <module name="chenyj_search" />
         <module name="chenyj_base" />
         <module name="chenyj_recruit" />
+        <module name="chenyj_rabbitmqtest" />
         <module name="chenyj_spit" />
       </profile>
     </annotationProcessing>
@@ -22,9 +24,12 @@
       <module name="chenyj_common" target="1.8" />
       <module name="chenyj_gathering" target="1.8" />
       <module name="chenyj_qa" target="1.8" />
+      <module name="chenyj_rabbitmqtest" target="1.8" />
       <module name="chenyj_recruit" target="1.8" />
       <module name="chenyj_search" target="1.8" />
       <module name="chenyj_spit" target="1.8" />
+      <module name="chenyj_user" target="1.8" />
+      <module name="elasticsearch" target="1.8" />
       <module name="parent" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -35,9 +40,12 @@
       <module name="chenyj_common" options="-parameters" />
       <module name="chenyj_gathering" options="-parameters" />
       <module name="chenyj_qa" options="-parameters" />
+      <module name="chenyj_rabbitmqtest" options="-parameters" />
       <module name="chenyj_recruit" options="-parameters" />
       <module name="chenyj_search" options="-parameters" />
       <module name="chenyj_spit" options="-parameters" />
+      <module name="chenyj_user" options="-parameters" />
+      <module name="elasticsearch" options="-parameters" />
       <module name="parent" options="-parameters" />
     </option>
   </component>
