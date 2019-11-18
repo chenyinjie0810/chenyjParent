@@ -14,10 +14,10 @@ spring:
 
   #消息队列配置
   rabbitmq:
-    host: 192.168.1.133
+    host: 192.168.0.14
   #redis配置
   redis:
-    host: 192.168.1.133
+    host: 192.168.0.14
     password: cyj7416146
 
   security:
