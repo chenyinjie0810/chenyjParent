@@ -160,18 +160,10 @@ public class UserService {
 	 * @param id
 	 */
 	public void deleteById(String id, HttpServletRequest request) throws Exception {
-		String authHeader= request.getHeader("Authorization");
-		if (StringUtils.isEmpty(authHeader)){
-			throw new Exception("权限不足");
-		}
-		if (authHeader.startsWith("Bearer ")){
-			String token=authHeader.substring(7);
-			Claims claims = jwtUtil.parseJWT(token);
-			//如果有权限
-			if ("admin".equals(claims.get("roles"))){
-				userDao.deleteById(id);
-				return;
-			}
+		Claims claims= (Claims) request.getAttribute("admin_claims");
+		if (null!=claims){
+			userDao.deleteById(id);
+			return;
 		}
 		throw new Exception("权限不足");
 	}
