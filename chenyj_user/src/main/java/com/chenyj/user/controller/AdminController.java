@@ -8,7 +8,9 @@ import enums.StatusCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import util.JwtUtil;
 
+import java.util.HashMap;
 import java.util.Map;
 /**
  * 控制器层
@@ -22,7 +24,9 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-	
+
+	@Autowired
+	private JwtUtil jwtUtil;
 	
 	/**
 	 * 查询全部数据
@@ -99,11 +103,24 @@ public class AdminController {
 	}
 
 
+	/**
+	 * @desc: 登录
+	 * @author: chenyj
+	 * @date: 2019/11/17
+	 * @param admin
+	 * @return
+	 */
 	@PostMapping(value = "/login")
 	public Result login(@RequestBody Admin admin){
 		Admin adminLogin=adminService.login(admin);
 		if (null!=adminLogin){
-			return new Result(StatusCodeEnum.SUCCESS, adminLogin);
+			//生成token
+			String token=jwtUtil.createJWT(adminLogin.getId(), adminLogin.getLoginname(),"admin");
+			Map map=new HashMap(2);
+			map.put("token",token);
+			//登录名
+			map.put("name", adminLogin.getLoginname());
+			return new Result(StatusCodeEnum.SUCCESS, map);
 		}else {
 			return new Result(StatusCodeEnum.FAIL);
 		}

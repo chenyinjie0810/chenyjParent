@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 /**
  * 控制器层
@@ -24,7 +25,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
+	@Autowired
+	private HttpServletRequest request;
 	
 	/**
 	 * 查询全部数据
@@ -96,7 +99,12 @@ public class UserController {
 	 */
 	@DeleteMapping(value="/{id}")
 	public Result delete(@PathVariable String id ){
-		userService.deleteById(id);
+		try {
+			userService.deleteById(id, request);
+		}catch (Exception e){
+			e.printStackTrace();
+			return new Result(StatusCodeEnum.SUCCESS,e.getMessage());
+		}
 		return new Result(StatusCodeEnum.SUCCESS,"删除成功");
 	}
 

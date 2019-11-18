@@ -24,3 +24,8 @@ spring:
     user:
       name: chenyj
       password: 123
+
+jwt:
+  config:
+    key: itcast
+    ttl: 3600000

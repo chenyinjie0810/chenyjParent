@@ -9,7 +9,9 @@ import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
+import javax.servlet.http.HttpServletRequest;
 
+import io.jsonwebtoken.Claims;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -27,6 +29,7 @@ import util.IdWorker;
 
 import com.chenyj.user.dao.UserDao;
 import com.chenyj.user.pojo.User;
+import util.JwtUtil;
 
 /**
  * 服务层
@@ -51,6 +54,9 @@ public class UserService {
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
+
+	@Autowired
+	private JwtUtil jwtUtil;
 
 	/**
 	 * @desc: 发送短信
@@ -153,8 +159,21 @@ public class UserService {
 	 * 删除
 	 * @param id
 	 */
-	public void deleteById(String id) {
-		userDao.deleteById(id);
+	public void deleteById(String id, HttpServletRequest request) throws Exception {
+		String authHeader= request.getHeader("Authorization");
+		if (StringUtils.isEmpty(authHeader)){
+			throw new Exception("权限不足");
+		}
+		if (authHeader.startsWith("Bearer ")){
+			String token=authHeader.substring(7);
+			Claims claims = jwtUtil.parseJWT(token);
+			//如果有权限
+			if ("admin".equals(claims.get("roles"))){
+				userDao.deleteById(id);
+				return;
+			}
+		}
+		throw new Exception("权限不足");
 	}
 
 	/**
