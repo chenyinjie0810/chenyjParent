@@ -46,6 +46,7 @@ public class LabelController {
      */
     @GetMapping(value = "/{labelId}")
     public Result findById(@PathVariable("labelId")String labelId){
+        System.out.println("NO.2");
         Label label=labelService.findById(labelId);
         return new Result(StatusCodeEnum.SUCCESS,label);
     }

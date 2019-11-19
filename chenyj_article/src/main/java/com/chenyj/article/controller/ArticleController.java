@@ -8,6 +8,7 @@ import enums.StatusCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 /**
@@ -22,8 +23,11 @@ public class ArticleController {
 
 	@Autowired
 	private ArticleService articleService;
-	
-	
+
+	@Autowired
+	private RestTemplate restTemplate;
+
+
 	/**
 	 * 查询全部数据
 	 * @return
@@ -85,7 +89,7 @@ public class ArticleController {
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
 	public Result update(@RequestBody Article article, @PathVariable String id ){
 		article.setId(id);
-		articleService.update(article);		
+		articleService.update(article);
 		return new Result(StatusCodeEnum.SUCCESS);
 	}
 	

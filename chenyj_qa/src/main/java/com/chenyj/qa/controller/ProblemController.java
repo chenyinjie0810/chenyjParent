@@ -1,5 +1,6 @@
 package com.chenyj.qa.controller;
 
+import com.chenyj.qa.client.LabelClient;
 import com.chenyj.qa.pojo.Problem;
 import com.chenyj.qa.service.ProblemService;
 import entity.PageResult;
@@ -22,8 +23,15 @@ public class ProblemController {
 
 	@Autowired
 	private ProblemService problemService;
-	
-	
+
+	@Autowired
+	private LabelClient labelClient;
+
+	@GetMapping("/label/{labelId}")
+	public Result labelId(@PathVariable("labelId")String labelId){
+		return labelClient.findById(labelId);
+	}
+
 	/**
 	 * 查询全部数据
 	 * @return

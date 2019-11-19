@@ -1,5 +1,5 @@
 server:
-  port: 9001
+  port: 9002
 
 spring:
   application:
@@ -14,3 +14,11 @@ spring:
     database: mysql
     show-sql: true
     database-platform: org.hibernate.dialect.MySQLDialect
+
+#注册服务
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
