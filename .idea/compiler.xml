@@ -6,17 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="chenyj_user" />
-        <module name="chenyj_rabbitmqtest" />
-        <module name="chenyj_gathering" />
         <module name="chenyj_common" />
+        <module name="chenyj_rabbitmqtest" />
+        <module name="chenyj_friend" />
+        <module name="chenyj_gathering" />
         <module name="chenyj_article" />
         <module name="chenyj_search" />
         <module name="chenyj_base" />
         <module name="chenyj_recruit" />
+        <module name="chenyj_qa" />
         <module name="chenyj_eureka8761" />
         <module name="chenyj_spit" />
-        <module name="chenyj_qa" />
+        <module name="chenyj_user" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -24,6 +25,7 @@
       <module name="chenyj_base" target="1.8" />
       <module name="chenyj_common" target="1.8" />
       <module name="chenyj_eureka8761" target="1.8" />
+      <module name="chenyj_friend" target="1.8" />
       <module name="chenyj_gathering" target="1.8" />
       <module name="chenyj_qa" target="1.8" />
       <module name="chenyj_rabbitmqtest" target="1.8" />
@@ -41,6 +43,7 @@
       <module name="chenyj_base" options="-parameters" />
       <module name="chenyj_common" options="-parameters" />
       <module name="chenyj_eureka8761" options="-parameters" />
+      <module name="chenyj_friend" options="-parameters" />
       <module name="chenyj_gathering" options="-parameters" />
       <module name="chenyj_qa" options="-parameters" />
       <module name="chenyj_rabbitmqtest" options="-parameters" />

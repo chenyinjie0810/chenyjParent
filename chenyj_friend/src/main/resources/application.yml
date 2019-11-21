@@ -10,7 +10,7 @@ spring:
     username: root
     password: cyj7416146
   jpa:
-    show-sql: trur
+    show-sql: true
     database: mysql
 jwt:
   config:
