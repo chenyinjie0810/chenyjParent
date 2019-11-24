@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @Date create by 2019/11/9 0:02
  * 陈银杰专属测试
  */
-@Document(indexName = "chenyj_article", type = "article")
+@Document(indexName = "chenyj_article01", type = "article")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,10 +25,10 @@ public class Article implements Serializable {
     @Id
     private String id;
 
-    @Field(index = true, analyzer = "ik_max_word", searchAnalyzer = "ik_max_word")
+    @Field(index = true, type = FieldType.Text,analyzer = "ik_max_word", searchAnalyzer = "ik_max_word")
     private String title;
 
-     @Field(index = true, analyzer = "ik_max_word", searchAnalyzer = "ik_max_word")
+     @Field(index = true, type = FieldType.Text,analyzer = "ik_max_word", searchAnalyzer = "ik_max_word")
     private String content;
 
     private String state;

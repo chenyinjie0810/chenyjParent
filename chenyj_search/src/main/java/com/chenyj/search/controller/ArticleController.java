@@ -7,6 +7,8 @@ import entity.Result;
 import enums.StatusCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -22,6 +24,9 @@ public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private ElasticsearchTemplate elasticsearchTemplate;
 
     /**
      * @desc: 保存
@@ -49,6 +54,11 @@ public class ArticleController {
                          @PathVariable int pageSize){
         Page<Article> page=articleService.findByTitleOrContentLike(keywords, pageNumber, pageSize);
         return new Result(StatusCodeEnum.SUCCESS,new PageResult<Article>(page.getTotalPages(),page.getContent()));
+    }
+
+    @GetMapping("/search/{content}")
+    public Result search(@PathVariable String content){
+        return new Result(StatusCodeEnum.SUCCESS, articleService.findByContent(content));
     }
 
 }

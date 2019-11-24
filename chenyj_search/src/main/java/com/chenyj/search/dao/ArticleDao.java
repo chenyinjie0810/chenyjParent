@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
+import java.util.List;
+
 /**
  * @Author chenyj
  * @Description
@@ -14,4 +16,6 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 public interface ArticleDao  extends ElasticsearchRepository<Article, String> {
     
     Page<Article> findByTitleOrContentLike(String title, String content, Pageable pageable);
+
+    List<Article> findByContentLike(String content);
 }

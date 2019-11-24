@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author chenyj
  * @Description
@@ -32,4 +34,11 @@ public class ArticleServiceImpl implements ArticleService {
         Pageable pageable=PageRequest.of(pageNumber-1, pageSize);
         return articleDao.findByTitleOrContentLike(keywords, keywords ,pageable);
     }
+
+    @Override
+    public List<Article> findByContent(String content) {
+        return  articleDao.findByContentLike(content);
+    }
+
+
 }
