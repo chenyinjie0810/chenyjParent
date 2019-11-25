@@ -16,6 +16,7 @@
         <module>chenyj_user</module>
         <module>chenyj_eureka8761</module>
         <module>chenyj_friend</module>
+        <module>chenyj_web</module>
     </modules>
 
     <parent>
