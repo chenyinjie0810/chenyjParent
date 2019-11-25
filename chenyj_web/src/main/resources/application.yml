@@ -1,0 +1,21 @@
+server:
+  port: 9011
+spring:
+  application:
+    name: chenyj-web
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+zuul:
+  routes:
+    chenyj-base:
+      path: /base/**
+      sensitiveHeaders:
+      serviceId: chenyj-base
+    chenyj-qa:
+      path: /qa/**
+      serviceId: chenyj-qa

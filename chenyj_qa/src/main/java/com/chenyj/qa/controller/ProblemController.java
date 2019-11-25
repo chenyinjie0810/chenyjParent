@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 /**
  * 控制器层
@@ -27,8 +28,12 @@ public class ProblemController {
 	@Autowired
 	private LabelClient labelClient;
 
+	@Autowired
+	private HttpServletRequest request;
+
 	@GetMapping("/label/{labelId}")
 	public Result labelId(@PathVariable("labelId")String labelId){
+		System.out.println("Authorization"+request.getHeader("authorization1"));
 		return labelClient.findById(labelId);
 	}
 
