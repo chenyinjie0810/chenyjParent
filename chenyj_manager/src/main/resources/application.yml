@@ -1,5 +1,6 @@
 server:
-  port: 9011
+  port: 9012
+  connection-timeout: 100
 spring:
   application:
     name: chenyj-web
@@ -10,7 +11,12 @@ eureka:
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka/
 
+jwt:
+  config:
+    key: itcast
+
 zuul:
+#设置敏感header不过滤
   sensitive-headers:
   routes:
     chenyj-base:
@@ -19,4 +25,9 @@ zuul:
     chenyj-qa:
       path: /qa/**
       serviceId: chenyj-qa
-
+    chenyj-user:
+      path: /user/**
+      serviceId: chenyj-user
+    chenyj-friend:
+      path: /friend/**
+      serviceId: chenyj-friend
