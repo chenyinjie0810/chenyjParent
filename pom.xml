@@ -18,6 +18,7 @@
         <module>chenyj_friend</module>
         <module>chenyj_web</module>
         <module>chenyj_manager</module>
+        <module>chenyj_config</module>
     </modules>
 
     <parent>
