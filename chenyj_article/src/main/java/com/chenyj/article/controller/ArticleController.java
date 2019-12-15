@@ -1,5 +1,6 @@
 package com.chenyj.article.controller;
 
+import com.chenyj.article.annotation.PrintLog;
 import com.chenyj.article.pojo.Article;
 import com.chenyj.article.service.ArticleService;
 import entity.PageResult;
@@ -32,8 +33,12 @@ public class ArticleController {
 	 * 查询全部数据
 	 * @return
 	 */
+	@PrintLog(status = 4, value = "查询全部标签数据")
 	@RequestMapping(method= RequestMethod.GET)
-	public Result findAll(){
+	public Result findAll(String code) throws Exception {
+		int a=0;
+		int b=2;
+		int c=b/a;
 		return new Result(StatusCodeEnum.SUCCESS,articleService.findAll());
 	}
 	

@@ -1,9 +1,11 @@
 package com.chenyj.article;
+import com.chenyj.article.aop.SysLog;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.client.RestTemplate;
 import util.IdWorker;
 
@@ -15,6 +17,7 @@ import util.IdWorker;
 @SpringBootApplication
 @EnableCaching
 @EnableEurekaClient
+@EnableAspectJAutoProxy
 public class ArticleApplication {
 
 	public static void main(String[] args) {
@@ -30,4 +33,6 @@ public class ArticleApplication {
 	public RestTemplate restTemplate(){
 		return new RestTemplate();
 	}
+
+
 }

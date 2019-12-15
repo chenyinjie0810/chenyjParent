@@ -132,7 +132,7 @@ public class ArticleService {
 	 * @param id
 	 */
 	public void deleteById(String id) {
-		redisTemplate.delete("article_"+id);
+//		redisTemplate.delete("article_"+id);
 		articleDao.deleteById(id);
 	}
 
