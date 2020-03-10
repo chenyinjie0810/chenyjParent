@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    config:
+      name: base #前缀
+      profile: dev #后缀
+      label: master  #主干
+      uri: http://127.0.0.1:12000
+management:
+#  endpoint:
+#    bus-refresh:
+#      enabled: true
+#      management.endpoints.web.exposure.include= bus-refresh
+ endpoints:
+    web:
+      exposure:
+        include: bus-refresh

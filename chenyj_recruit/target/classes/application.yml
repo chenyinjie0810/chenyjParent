@@ -1,0 +1,13 @@
+server: 
+  port: 9002
+spring: 
+  application:  
+    name: chenyj-recruit #指定服务名
+  datasource:  
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/chenyj_recruit?serverTimezone=UTC&characterEncoding=utf-8
+    username: root
+    password: cyj7416146
+  jpa: 
+    database: MySQL
+    show-sql: true

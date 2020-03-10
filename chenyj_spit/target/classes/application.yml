@@ -1,0 +1,13 @@
+server:
+  port: 9006
+spring:
+  application:
+    name: chenyj-spit
+  data:
+    mongodb:
+      host: 192.168.1.163
+      database: spitdb
+  redis:
+    port: 6379
+    host: 192.168.1.163
+    password: cyj7416146
