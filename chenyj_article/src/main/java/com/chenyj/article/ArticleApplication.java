@@ -6,6 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.client.RestTemplate;
 import util.IdWorker;
 
@@ -18,6 +19,7 @@ import util.IdWorker;
 @EnableCaching
 @EnableEurekaClient
 @EnableAspectJAutoProxy
+@EnableAsync
 public class ArticleApplication {
 
 	public static void main(String[] args) {
